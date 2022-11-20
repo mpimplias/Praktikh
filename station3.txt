@@ -1,0 +1,6 @@
+p = nsidedpoly(1000,'Center',[3 3],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[6 8],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 

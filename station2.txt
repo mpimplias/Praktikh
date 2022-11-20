@@ -1,0 +1,30 @@
+p = nsidedpoly(1000,'Center',[4 0],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[4 9],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[7 0],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[6 9],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[2 1],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[8 0],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[1 9],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[6 1],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[3 4],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 
+p = nsidedpoly(1000,'Center',[2 4],'Radius',3) 
+plot(p,'FaceColor','r') 
+hold on 

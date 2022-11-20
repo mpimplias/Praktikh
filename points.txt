@@ -1,0 +1,40 @@
+x=3
+y=3
+plot(x,y,'.','markersize',8) 
+hold on 
+x=9
+y=7
+plot(x,y,'.','markersize',8) 
+hold on 
+x=4
+y=7
+plot(x,y,'.','markersize',8) 
+hold on 
+x=1
+y=7
+plot(x,y,'.','markersize',8) 
+hold on 
+x=9
+y=5
+plot(x,y,'.','markersize',8) 
+hold on 
+x=0
+y=2
+plot(x,y,'.','markersize',8) 
+hold on 
+x=3
+y=6
+plot(x,y,'.','markersize',8) 
+hold on 
+x=7
+y=6
+plot(x,y,'.','markersize',8) 
+hold on 
+x=3
+y=8
+plot(x,y,'.','markersize',8) 
+hold on 
+x=100
+y=100
+plot(x,y,'.','markersize',8) 
+hold on 
