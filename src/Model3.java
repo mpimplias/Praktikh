@@ -12,11 +12,13 @@ public class Model3 {
     private int[][] nodes;
     private int range;
     private int hospitals;
+    private int droneRange;
 
-    public Model3(int[][] nodes, int range, int hospitals){
+    public Model3(int[][] nodes, int range, int hospitals, int droneRange){
         this.nodes = nodes;
         this.range = range;
         this.hospitals = hospitals;
+        this.droneRange = droneRange;
     }
 
     public void Solve(){
@@ -47,16 +49,18 @@ public class Model3 {
                 cplex.addGe(sum,1);
             }
 
-            //Περιορισμός που αναγκάζει η εμβέλεια κάθε σταθμού να τέμνεται με την εμβέλεια τουλάχιστον ενός σταθμού
-            //ώστε να ικανοποιείται η ανάγκη της ύπαρξης ενός τουλάχιστον μονοπατιού από κάθε νοσοκομείο σε κάθε νοσοκομείο
+            //Περιορισμός που ελέγχει αν ο κάθε σταθμός απέχει όσο και η απόσταση που μπορεί να πετάξει κάθε drone από
+            //τουλάχιστον έναν άλλον σταθμό
             for (int n = 0 ; n < nodes.length ; n++){
 
                 IloNumExpr sum = cplex.numExpr();
-                for (int n1 = 0 ; n1 < nodes.length ; n1++){
-                    sum = cplex.sum(sum,cplex.prod(cplex.prod(x[n],x[n1]),(int)Math.ceil(Math.sqrt((nodes[n][1] - nodes[n1][1])*(nodes[n][1] - nodes[n1][1]) + (nodes[n][0] - nodes[n1][0])*(nodes[n][0] - nodes[n1][0])))));
+                for (int i = 0 ; i < nodes.length ; i++){
+                    if (Math.sqrt((nodes[n][0] - nodes[i][0])*(nodes[n][0] - nodes[i][0]) + (nodes[n][1] - nodes[i][1])*(nodes[n][1] - nodes[i][1])) <= droneRange){
+                        sum = cplex.sum(sum,cplex.prod(x[n],cplex.prod(x[i],1)));
+                    }
                 }
 
-                cplex.addLe(sum,2*range);
+                cplex.addGe(sum,1);
             }
 
             //Αντικειμενική συνάρτηση

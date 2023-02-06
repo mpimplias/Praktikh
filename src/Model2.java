@@ -11,10 +11,12 @@ public class Model2 {
 
     private int[][] nodes;
     private int range;
+    private int droneRange;
 
-    public Model2(int[][] nodes, int range){
+    public Model2(int[][] nodes, int range, int droneRange){
         this.nodes = nodes;
         this.range = range;
+        this.droneRange = droneRange;
     }
 
     public void Solve(){
@@ -26,6 +28,20 @@ public class Model2 {
             IloNumVar[] x = new IloNumVar[nodes.length];
             for (int n = 0 ; n < nodes.length ; n++){
                 x[n] = cplex.boolVar();
+            }
+
+            //Περιορισμός που ελέγχει αν ο κάθε σταθμός απέχει όσο και η απόσταση που μπορεί να πετάξει κάθε drone από
+            //τουλάχιστον έναν άλλον σταθμό
+            for (int n = 0 ; n < nodes.length ; n++){
+
+                IloNumExpr sum = cplex.numExpr();
+                for (int i = 0 ; i < nodes.length ; i++){
+                    if (Math.sqrt((nodes[n][0] - nodes[i][0])*(nodes[n][0] - nodes[i][0]) + (nodes[n][1] - nodes[i][1])*(nodes[n][1] - nodes[i][1])) <= droneRange){
+                        sum = cplex.sum(sum,cplex.prod(x[n],cplex.prod(x[i],1)));
+                    }
+                }
+
+                cplex.addGe(sum,1);
             }
 
             //Αντικειμενική συνάρτηση
